@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": 3,
+      "avatar": "https://yt3.ggpht.com/a/AATXAJz1Lg3Jx0iuzY361o46i-F6ylYtZJHZ0x3oag=s900-c-k-c0xffffffff-no-rj-mo",
+      "name": "test test",
+      "email": "test.1@gmail.com",
+      "country": "Japan",
+      "dob": "2021-12-27"
+    }
+  ]
+}

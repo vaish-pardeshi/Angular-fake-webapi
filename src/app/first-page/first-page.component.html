@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary fixed-top ">
+    <div class="container-fluid ">
+    
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <h3 class="text-white">Angular Fake API</h3>   
+        </ul>
+        <div class="d-flex">
+            <button type="button" class="btn btn-primary text-white px-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+               Add
+            </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+<div class=" mt-5  container-fluid row  ">
+  <div class="card mt-4 w-50 ml-1" *ngFor="let row of employeeData">
+   <div class="row">
+    <div class="col-2">  
+      <img class="card-img-top" src="{{row.avatar}}" alt=""  > </div>
+    <div class="col-8">
+      <div class="card-body">
+        <h4 class="card-title">{{row.name}}</h4>
+        <div class="card-text">
+          <h6>{{row.email}}</h6>
+          <p>Age: {{row.dob | age}} <span>&nbsp;&nbsp;&nbsp; Country: {{row.country}}</span></p>
+          <button (click)="onEdit(row)" class="btn btn-outline-secondary px-4" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+          <button type="button" (click)="deleteEmployee(row)" class="btn btn-outline-danger mx-3">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+   
+  </div>
+
+
+ <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h1>User Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       
+        <div class="modal-body">
+            <form  [formGroup]="formValue">
+            <div class="row">
+                <div class="col-6">
+                    <div formControlName="selectAvatar" id="avatar">
+
+                      <img  (click)="showImage()"  class="btn show navbar-collapse w-25" src="{{selectAvatar}}" alt="">
+                  <!-- <img  (click)="showImage()"  class="btn show navbar-collapse w-25" src="{{selectAvatar}}" alt=""> -->
+                  <ul *ngIf="showAvatar">
+                      <li *ngFor="let img of avatarname" class="nav-link" id="alex" 
+                      (click)="changeAvatar(img)"><img src="{{img.src}}" alt="1" class="w-25"></li>
+                  </ul>
+                </div>
+                
+                    <input type="text"  formControlName="avatar" name="avatar" id="avatar" class="form-control my-3" placeholder="Avatar">
+                 
+                    <input type="email" formControlName="email"  name="email" id="email" class="form-control my-3" placeholder="abc@gmail.com" required>
+                    <input type="date" formControlName="dob"  name="age" id="age" class="form-control my-3" placeholder="01/01/2000" required>
+                  
+                </div>
+                <div class="col-6">
+                 <input type="text"   formControlName="name"name="name" id="name"class="form-control my-3" placeholder="Name" required>
+                <select name="" id="country" class="form-control" formControlName="country">
+                        <option disabled selected  value="">Country</option>
+                        <option value="india" >India</option>
+                        <option value="America" >America</option>
+                        <option value="Newyork" >Newyork</option>
+                        <option value="Japan" >Japan</option>
+                        <option value="Landon" >Landon</option> 
+                        
+
+                      </select>
+                </div>
+            </div>
+         
+        </form>
+        </div>
+        <div class="modal-footer">
+            <button type="reset" class="btn btn-danger mx-3" id ="cancel"  data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+            <button type="submit" class="btn btn-success" *ngIf="showSave" (click)="postEmployeeDetails()" >Save</button>
+            <button type="button" *ngIf="showUpadate" (click)="updateEmployeeDetails()" class="btn btn-success">Update</button>
+        </div>
+     
+      </div>
+    </div>
+  </div>
